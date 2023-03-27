@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace：命名空间，是用于绑定Dao接口的，即面向接口编程，必须写为被绑定接口的全类名-->
+<mapper namespace="com.example.graduationProject.mapper.chartDataMapper">
+
+    <resultMap id="chartDataMapper" type="com.example.graduationProject.entity.ChartData">
+
+        <id column="data_id" jdbcType="INTEGER" property="dataId" />
+        <result column="data_name" jdbcType="VARCHAR" property="dataName" />
+        <result column="data_value" jdbcType="VARCHAR" property="dataValue" />
+
+    </resultMap>
+
+    <select id="selectByDataId" resultMap="chartDataMapper">
+        select * from chart_data where data_id=#{dataId}
+    </select>
+    <insert id="insertChartData" parameterType="com.example.graduationProject.entity.ChartData">
+        insert into chart_data(data_name,data_value)
+        values (#{dataName},#{dataValue})
+    </insert>
+
+        <update id="updateChartData" parameterType="com.example.graduationProject.entity.ChartData">
+            update chart_data set data_name = #{dataName},data_value = #{dataValue}
+            where data_id = #{dataId}
+        </update>
+
+    <delete id="deleteChartData" parameterType="com.example.graduationProject.entity.ChartData">
+        delete from chart_data where data_id = #{dataId}
+    </delete>
+
+</mapper>
+
+
+
